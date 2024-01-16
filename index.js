@@ -1,5 +1,10 @@
 const http = require('http');
 const PORT = 3000;
+const cheerio = require('cheerio');
+const axios = require('axios');
+const TelegramBot = require('node-telegram-bot-api');
+const express = require('express');
+const app = express();
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
