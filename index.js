@@ -105,3 +105,226 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}/`);
 });
+
+
+const token = '6956068223:AAGpqeLyS3MAJUqoj8MBjcJLpygykJHfd3s';
+const bot = new TelegramBot(token, { polling: true });
+const scrapeAndSendMessage = async (url, selector, stockName) => {
+  try {
+    const response = await axios.get(url);
+    const $ = cheerio.load(response.data);
+    const pChangeText = $(selector).text().trim();
+    console.log(`${stockName} Stock:`, pChangeText);
+
+    return pChangeText;
+  } catch (error) {
+    console.error(`Error fetching HTML for ${stockName} Stock:`, error);
+    return null;
+  }
+};
+
+// Listen for all messages
+bot.on('message', async (msg) => {
+  const chatId = msg.chat.id;
+
+  // Run the scraping function for each URL
+  const pChangeText1 = await scrapeAndSendMessage(rel, '.percentChange', 'Reliance Industries');
+  const rel1 = (parseFloat(pChangeText1) * 5.88) / 100; // Parse float to ensure proper calculation
+  const pChangeText2 = await scrapeAndSendMessage(bse, '.percentChange', 'BSE Ltd');
+  const rel2 = (parseFloat(pChangeText2) * 3.76) / 100; // Parse float to ensure proper calculation
+  const pChangeText3 = await scrapeAndSendMessage(relf, '.percentChange', 'Reliance Industries Future');
+  const rel3 = (parseFloat(pChangeText3) * 3.69) / 100; // Parse float to ensure proper calculation
+  const pChangeText4 = await scrapeAndSendMessage(jio, '.percentChange', 'Jio Financial Services Ltd');
+  const rel4 = (parseFloat(pChangeText4) * 3.69) / 100; // Parse float to ensure proper calculation
+  const pChangeText5 = await scrapeAndSendMessage(bikaji, '.percentChange', 'Bikaji Foods International Ltd');
+  const rel5 = (parseFloat(pChangeText5) * 3.12) / 100; // Parse float to ensure proper calculation
+  const pChangeText6 = await scrapeAndSendMessage(irb, '.percentChange', 'IRB Infrastructure Developers Ltd');
+  const rel6 = (parseFloat(pChangeText6) * 3.03) / 100; // Parse float to ensure proper calculation
+  const pChangeText7 = await scrapeAndSendMessage(hindustancopper, '.percentChange', 'Hindustan Copper Ltd');
+  const rel7 = (parseFloat(pChangeText7) * 2.74) / 100; // Parse float to ensure proper calculation
+  const pChangeText8 = await scrapeAndSendMessage(arvind, '.percentChange', 'Arvind Ltd');
+  const rel8 = (parseFloat(pChangeText8) * 2.70) / 100; // Parse float to ensure proper calculation
+  const pChangeText9 = await scrapeAndSendMessage(adani, '.percentChange', 'Adani Power Ltd');
+  const rel9 = (parseFloat(pChangeText9) * 2.60) / 100; // Parse float to ensure proper calculation
+    const pChangeText10 = await scrapeAndSendMessage(pnb, '.percentChange', 'Punjab National Bank');
+    const rel10 = (parseFloat(pChangeText10) * 1.94) / 100; // Parse float to ensure proper calculation
+    const pChangeText11 = await scrapeAndSendMessage(rbl, '.percentChange', 'RBL Bank Ltd');
+    const rel11 = (parseFloat(pChangeText11) * 1.90) / 100; // Parse float to ensure proper calculation
+    const pChangeText12 = await scrapeAndSendMessage(marksans, '.percentChange', 'Marksans Pharma Ltd');
+    const rel12 = (parseFloat(pChangeText12) * 1.88) / 100; // Parse float to ensure proper calculation
+    const pChangeText13 = await scrapeAndSendMessage(minda, '.percentChange', 'Minda Corporation Ltd');
+    const rel13 = (parseFloat(pChangeText13) * 1.84) / 100; // Parse float to ensure proper calculation
+    const pChangeText14 = await scrapeAndSendMessage(ushamartin, '.percentChange', 'Usha Martin Ltd');
+    const rel14 = (parseFloat(pChangeText14) * 1.81) / 100; // Parse float to ensure proper calculation
+    const pChangeText15 = await scrapeAndSendMessage(century, '.percentChange', 'Century Textiles Industries Ltd');
+    const rel15 = (parseFloat(pChangeText15) * 1.81) / 100; // Parse float to ensure proper calculation
+    const pChangeText16 = await scrapeAndSendMessage(anandrathi, '.percentChange', 'Anand Rathi Wealth Ltd');
+    const rel16 = (parseFloat(pChangeText16) * 1.77) / 100; // Parse float to ensure proper calculation
+    const pChangeText17 = await scrapeAndSendMessage(agies, '.percentChange', 'Aegis Logistics Ltd');
+    const rel17 = (parseFloat(pChangeText17) * 1.75) / 100; // Parse float to ensure proper calculation
+    const pChangeText18 = await scrapeAndSendMessage(karnatka, '.percentChange', 'Karnataka Bank Ltd');
+    const rel18 = (parseFloat(pChangeText18) * 1.74) / 100; // Parse float to ensure proper calculation
+    const pChangeText19 = await scrapeAndSendMessage(heg, '.percentChange', 'Heg Ltd');
+    const rel19 = (parseFloat(pChangeText19) * 1.57) / 100; // Parse float to ensure proper calculation
+    const pChangeText20 = await scrapeAndSendMessage(reltail, '.percentChange', 'Railtel Corporation of India Ltd');
+    const rel20 = (parseFloat(pChangeText20) * 1.54) / 100; // Parse float to ensure proper calculation
+    const pChangeText21 = await scrapeAndSendMessage(hfcl, '.percentChange', 'HFCL Ltd');
+    const rel21 = (parseFloat(pChangeText21) * 1.54) / 100; // Parse float to ensure proper calculation
+    const pChangeText22 = await scrapeAndSendMessage(shipping, '.percentChange', 'Shipping Corporation of India Ltd');
+    const rel22 = (parseFloat(pChangeText22) * 1.47) / 100; // Parse float to ensure proper calculation
+    const pChangeText23 = await scrapeAndSendMessage(deltacorp, '.percentChange', 'Delta Corp Ltd');
+    const rel23 = (parseFloat(pChangeText23) * 1.46) / 100; // Parse float to ensure proper calculation
+    const pChangeText24 = await scrapeAndSendMessage(sula, '.percentChange', 'Sula Vineyards Ltd');
+    const rel24 = (parseFloat(pChangeText24) * 1.41) / 100; // Parse float to ensure proper calculation
+    const pChangeText25 = await scrapeAndSendMessage(hindalko, '.percentChange', 'Hindalco Industries Ltd');
+    const rel25 = (parseFloat(pChangeText25) * 1.41) / 100; // Parse float to ensure proper calculation
+    const pChangeText26 = await scrapeAndSendMessage(justdial, '.percentChange', 'Just Dial Ltd');
+    const rel26 = (parseFloat(pChangeText26) * 1.38) / 100; // Parse float to ensure proper calculation
+    const pChangeText27 = await scrapeAndSendMessage(sjvn, '.percentChange', 'SJVN Ltd');
+    const rel27 = (parseFloat(pChangeText27) * 1.30) / 100; // Parse float to ensure proper calculation
+    const pChangeText28 = await scrapeAndSendMessage(grephiteindia, '.percentChange', 'Graphite India Ltd');
+    const rel28 = (parseFloat(pChangeText28) * 1.20) / 100; // Parse float to ensure proper calculation
+    const pChangeText29 = await scrapeAndSendMessage(parimalpharma, '.percentChange', 'Piramal Pharma Ltd');
+    const rel29 = (parseFloat(pChangeText29) * 1.15) / 100; // Parse float to ensure proper calculation
+    const pChangeText30 = await scrapeAndSendMessage(tv18, '.percentChange', 'TV18 Broadcast Ltd');
+    const rel30 = (parseFloat(pChangeText30) * 1.09) / 100; // Parse float to ensure proper calculation
+    const pChangeText31 = await scrapeAndSendMessage(maninfra, '.percentChange', 'Man Infraconstruction Ltd');
+    const rel31 = (parseFloat(pChangeText31) * 1.06) / 100; // Parse float to ensure proper calculation
+    const pChangeText32 = await scrapeAndSendMessage(jammu, '.percentChange', 'Jammu Kashmir Bank Ltd');
+    const rel32 = (parseFloat(pChangeText32) * 1.06) / 100; // Parse float to ensure proper calculation
+    const pChangeText33 = await scrapeAndSendMessage(stride, '.percentChange', 'Stride Pharma Science Ltd');
+    const rel33 = (parseFloat(pChangeText33) * 1.05) / 100; // Parse float to ensure proper calculation
+    const pChangeText34 = await scrapeAndSendMessage(sequent, '.percentChange', 'Sequent Scientific Ltd');
+    const rel34 = (parseFloat(pChangeText34) * 1.01) / 100; // Parse float to ensure proper calculation
+    const pChangeText35 = await scrapeAndSendMessage(anupam, '.percentChange', 'Anupam Rasayan India Ltd');
+    const rel35 = (parseFloat(pChangeText35) * 0.99) / 100; // Parse float to ensure proper calculation
+    const pChangeText36 = await scrapeAndSendMessage(tvs, '.percentChange', 'Tvs Srichakra Ltd');
+    const rel36 = (parseFloat(pChangeText36) * 0.98) / 100; // Parse float to ensure proper calculation
+    const pChangeText37 = await scrapeAndSendMessage(gail, '.percentChange', 'Gail India Ltd');
+    const rel37 = (parseFloat(pChangeText37) * 0.96) / 100; // Parse float to ensure proper calculation
+    const pChangeText38 = await scrapeAndSendMessage(auribindo, '.percentChange', 'Aurobindo Pharma Ltd');
+    const rel38 = (parseFloat(pChangeText38) * 0.95) / 100; // Parse float to ensure proper calculation
+    const pChangeText39 = await scrapeAndSendMessage(jindalsp, '.percentChange', 'Jindal Steel Power Ltd');
+    const rel39 = (parseFloat(pChangeText39) * 0.93) / 100; // Parse float to ensure proper calculation
+    const pChangeText40 = await scrapeAndSendMessage(jmfinance, '.percentChange', 'JM Financial Ltd');
+    const rel40 = (parseFloat(pChangeText40) * 0.90) / 100; // Parse float to ensure proper calculation
+    const pChangeText41 = await scrapeAndSendMessage(nitinspinner, '.percentChange', 'Nitin Spinners Ltd');
+    const rel41 = (parseFloat(pChangeText41) * 0.87) / 100; // Parse float to ensure proper calculation
+    const pChangeText42 = await scrapeAndSendMessage(granules, '.percentChange', 'Granules India Ltd');
+    const rel42 = (parseFloat(pChangeText42) * 0.87) / 100; // Parse float to ensure proper calculation
+    const pChangeText43 = await scrapeAndSendMessage(archean, '.percentChange', 'Archean Chemical Industries Ltd');
+    const rel43 = (parseFloat(pChangeText43) * 0.81) / 100; // Parse float to ensure proper calculation
+    const pChangeText44 = await scrapeAndSendMessage(adanienter, '.percentChange', 'Adani Enterprises Ltd');
+    const rel44 = (parseFloat(pChangeText44) * 0.80) / 100; // Parse float to ensure proper calculation
+    const pChangeText45 = await scrapeAndSendMessage(polymadicure, '.percentChange', 'Poly Medicure Ltd');
+    const rel45 = (parseFloat(pChangeText45) * 0.80) / 100; // Parse float to ensure proper calculation
+    const pChangeText46 = await scrapeAndSendMessage(eidparry, '.percentChange', 'Eid Parry India Ltd');
+    const rel46 = (parseFloat(pChangeText46) * 0.79) / 100; // Parse float to ensure proper calculation
+    const pChangeText47 = await scrapeAndSendMessage(orchid, '.percentChange', 'Orchid Pharma Ltd');
+    const rel47 = (parseFloat(pChangeText47) * 0.78) / 100; // Parse float to ensure proper calculation
+    const pChangeText48 = await scrapeAndSendMessage(rblbank, '.percentChange', 'RBL Bank Ltd');
+    const rel48 = (parseFloat(pChangeText48) * 0.78) / 100; // Parse float to ensure proper calculation
+    const pChangeText49 = await scrapeAndSendMessage(restaurant, '.percentChange', 'Restaurant Brands Asia Ltd');
+    const rel49 = (parseFloat(pChangeText49) * 0.76) / 100; // Parse float to ensure proper calculation 
+    const pChangeText50 = await scrapeAndSendMessage(orrisa, '.percentChange', 'The Orissa Minerals Development Company Ltd');
+    const rel50 = (parseFloat(pChangeText50) * 0.70) / 100; // Parse float to ensure proper calculation
+    const pChangeText51 = await scrapeAndSendMessage(ritesh, '.percentChange', 'Rites Ltd');
+    const rel51 = (parseFloat(pChangeText51) * 0.69) / 100; // Parse float to ensure proper calculation
+    const pChangeText52 = await scrapeAndSendMessage(garware, '.percentChange', 'Garware Hi-Tech Films Ltd');
+    const rel52 = (parseFloat(pChangeText52) * 0.68) / 100; // Parse float to ensure proper calculation
+    const pChangeText53 = await scrapeAndSendMessage(arbindopahrma, '.percentChange', 'Aurobindo Pharma Ltd');
+    const rel53 = (parseFloat(pChangeText53) * 0.64) / 100; // Parse float to ensure proper calculation
+    const pChangeText54 = await scrapeAndSendMessage(rishabhins, '.percentChange', 'Rishabh Instruments Ltd');
+    const rel54 = (parseFloat(pChangeText54) * 0.63) / 100; // Parse float to ensure proper calculation
+    const pChangeText55 = await scrapeAndSendMessage(neogen, '.percentChange', 'Neogen Chemicals Ltd');
+    const rel55 = (parseFloat(pChangeText55) * 0.58) / 100; // Parse float to ensure proper calculation
+    const pChangeText56 = await scrapeAndSendMessage(nueland, '.percentChange', 'Neuland Laboratories Ltd');
+    const rel56 = (parseFloat(pChangeText56) * 0.57) / 100; // Parse float to ensure proper calculation
+    const pChangeText57 = await scrapeAndSendMessage(metropolish, '.percentChange', 'Metropolis Healthcare Ltd');
+    const rel57 = (parseFloat(pChangeText57) * 0.55) / 100; // Parse float to ensure proper calculation
+    const pChangeText58 = await scrapeAndSendMessage(keystone, '.percentChange', 'Keystone Realtors Ltd');
+    const rel58 = (parseFloat(pChangeText58) * 0.54) / 100; // Parse float to ensure proper calculation
+    const pChangeText59 = await scrapeAndSendMessage(grasim, '.percentChange', 'Grasim Industries Ltd');
+    const rel59 = (parseFloat(pChangeText59) * 0.49) / 100; // Parse float to ensure proper calculation
+    const pChangeText60 = await scrapeAndSendMessage(jash, '.percentChange', 'Jash Engineering Ltd');
+    const rel60 = (parseFloat(pChangeText60) * 0.48) / 100; // Parse float to ensure proper calculation
+    const pChangeText61 = await scrapeAndSendMessage(indoco, '.percentChange', 'Indoco Remedies Ltd');
+    const rel61 = (parseFloat(pChangeText61) * 0.44) / 100; // Parse float to ensure proper calculation
+    const pChangeText62 = await scrapeAndSendMessage(cipla, '.percentChange', 'Cipla Ltd');
+    const rel62 = (parseFloat(pChangeText62) * 0.42) / 100; // Parse float to ensure proper calculation
+    const pChangeText63 = await scrapeAndSendMessage(bestagro, 'span.jsx-3168773259.change', 'Best Agrolife Ltd');
+   const rel63 = parseFloat(pChangeText63);
+  const rel634 = (rel63 * 0.39)/100;
+  console.log(rel634);
+    const pChangeText64 = await scrapeAndSendMessage(indianenergy, '.percentChange', 'Indian Energy Exchange Ltd');
+    const rel64 = (parseFloat(pChangeText64) * 0.39) / 100; // Parse float to ensure proper calculation
+    const pChangeText65 = await scrapeAndSendMessage(engeenerindia, '.percentChange', 'Engineers India Ltd');
+    const rel65 = (parseFloat(pChangeText65) * 0.36) / 100; // Parse float to ensure proper calculation
+    const pChangeText66 = await scrapeAndSendMessage(ncc, '.percentChange', 'NCC Ltd');
+    const rel66 = (parseFloat(pChangeText66) * 0.34) / 100; // Parse float to ensure proper calculation
+    const pChangeText67 = await scrapeAndSendMessage(asterdm, '.percentChange', 'Aster DM Healthcare Ltd');
+    const rel67 = (parseFloat(pChangeText67) * 0.33) / 100; // Parse float to ensure proper calculation
+    const pChangeText68 = await scrapeAndSendMessage(latent, '.percentChange', 'Latent View Analytics Ltd');
+    const rel68 = (parseFloat(pChangeText68) * 0.33) / 100; // Parse float to ensure proper calculation
+    const pChangeText69 = await scrapeAndSendMessage(pix, '.percentChange', 'Pix Transmissions Ltd');
+    const rel69 = (parseFloat(pChangeText69) * 0.32) / 100; // Parse float to ensure proper calculation
+    const pChangeText70 = await scrapeAndSendMessage(ksb, '.percentChange', 'KSB Ltd');
+    const rel70 = (parseFloat(pChangeText70) * 0.32) / 100; // Parse float to ensure proper calculation
+    const pChangeText71 = await scrapeAndSendMessage(hpadhesive, '.percentChange', 'HP Adhesives Ltd');
+    const rel71 = (parseFloat(pChangeText71) * 0.31) / 100; // Parse float to ensure proper calculation
+    const pChangeText72 = await scrapeAndSendMessage(vardhman, '.percentChange', 'Vardhman Textiles Ltd');
+    const rel72 = (parseFloat(pChangeText72) * 0.30) / 100; // Parse float to ensure proper calculation
+    const pChangeText73 = await scrapeAndSendMessage(ambuja, '.percentChange', 'Ambuja Cements Ltd');
+    const rel73 = (parseFloat(pChangeText73) * 0.28) / 100; // Parse float to ensure proper calculation
+    const pChangeText74 = await scrapeAndSendMessage(epl, '.percentChange', 'EPL Ltd');
+    const rel74 = (parseFloat(pChangeText74) * 0.26) / 100; // Parse float to ensure proper calculation
+    const pChangeText75 = await scrapeAndSendMessage(on97, '.percentChange', 'One97 Communications Ltd');
+    const rel75 = (parseFloat(pChangeText75) * 0.23) / 100; // Parse float to ensure proper calculation
+    const pChangeText76 = await scrapeAndSendMessage(confipetrin, '.percentChange', 'Confidence Petroleum India Ltd');
+    const rel76 = (parseFloat(pChangeText76) * 0.23) / 100; // Parse float to ensure proper calculation
+    const pChangeText77 = await scrapeAndSendMessage(agigreenpack, '.percentChange', 'AGI Infra Ltd');
+    const rel77 = (parseFloat(pChangeText77) * 0.22) / 100; // Parse float to ensure proper calculation
+    const pChangeText78 = await scrapeAndSendMessage(primochemi, '.percentChange', 'Primo Industrial Development Ltd');
+    const rel78 = (parseFloat(pChangeText78) * 0.20) / 100; // Parse float to ensure proper calculation
+    const pChangeText79 = await scrapeAndSendMessage(sp, '.percentChange', 'S P Apparels Ltd');
+    const rel79 = (parseFloat(pChangeText79) * 0.18) / 100; // Parse float to ensure proper calculation
+    const pChangeText80 = await scrapeAndSendMessage(indianhumepipe, '.percentChange', 'Indian Hume Pipe Company Ltd');
+    const rel80 = (parseFloat(pChangeText80) * 0.17) / 100; // Parse float to ensure proper calculation
+    const pChangeText81 = await scrapeAndSendMessage(taj, '.percentChange', 'Taj GVK Hotels & Resorts Ltd');
+    const rel81 = (parseFloat(pChangeText81) * 0.16) / 100; // Parse float to ensure proper calculation
+    const pChangeText82 = await scrapeAndSendMessage(lupin, '.percentChange', 'Lupin Ltd');
+    const rel82 = (parseFloat(pChangeText82) * 0.15) / 100; // Parse float to ensure proper calculation
+    const pChangeText83 = await scrapeAndSendMessage(sunpharmadv, '.percentChange', 'Sun Pharma Advanced Research Company Ltd');
+    const rel83 = (parseFloat(pChangeText83) * 0.15) / 100; // Parse float to ensure proper calculation
+    const pChangeText84 = await scrapeAndSendMessage(orient, '.percentChange', 'Orient Paper Industries Ltd');
+    const rel84 = (parseFloat(pChangeText84) * 0.14) / 100; // Parse float to ensure proper calculation
+    const pChangeText85 = await scrapeAndSendMessage(bharatrasayan, '.percentChange', 'Bharat Rasayan Ltd');
+    const rel85 = (parseFloat(pChangeText85) * 0.13) / 100; // Parse float to ensure proper calculation
+    const pChangeText86 = await scrapeAndSendMessage(nacl, '.percentChange', 'NAACL Industries Ltd');
+    const rel86 = (parseFloat(pChangeText86) * 0.12) / 100; // Parse float to ensure proper calculation
+    const pChangeText87 = await scrapeAndSendMessage(irm, '.percentChange', 'IRM Energy Ltd');
+    const rel87 = (parseFloat(pChangeText87) * 0.12) / 100; // Parse float to ensure proper calculation
+    const pChangeText88 = await scrapeAndSendMessage(vimla, '.percentChange', 'Vimta Labs Ltd');
+    const rel88 = (parseFloat(pChangeText88) * 0.12) / 100; // Parse float to ensure proper calculation
+
+    const total = rel1 + rel2 + rel3 + rel4 + rel5 + rel6 + rel7 + rel8 + rel9 + rel10 + rel11 + rel12 + rel13 + rel14 + rel15 + rel16 + rel17 + rel18 + rel19 + rel20 + rel21 + rel22 + rel23 + rel24 + rel25 + rel26 + rel27 + rel28 + rel29 + rel30 + rel31 + rel32 + rel33 + rel34 + rel35 + rel36 + rel37 + rel38 + rel39 + rel40 + rel41 + rel42 + rel43 + rel44 + rel45 + rel46 + rel47 + rel48 + rel49 + rel50 + rel51 + rel52 + rel53 + rel54 + rel55 + rel56 + rel57 + rel58 + rel59 + rel60 + rel61 + rel62 + rel634 + rel64 + rel65 + rel66 + rel67 + rel68 + rel69 + rel70 + rel71 + rel72 + rel73 + rel74 + rel75 + rel76 + rel77 + rel78 + rel79 + rel80 + rel81 + rel82 + rel83 + rel84 + rel85 + rel86 + rel87 + rel88;
+
+
+
+
+
+
+
+
+  // Check for null values before using them
+  if (!pChangeText1 || !pChangeText2 || !pChangeText3 || !pChangeText4 || !pChangeText5 || !pChangeText6 || !pChangeText7 || !pChangeText8 || !pChangeText9 || !pChangeText10 || !pChangeText11 || !pChangeText12 || !pChangeText13 || !pChangeText14 || !pChangeText15 || !pChangeText16 || !pChangeText17 || !pChangeText18 || !pChangeText19 || !pChangeText20 || !pChangeText21 || !pChangeText22 || !pChangeText23 || !pChangeText24 || !pChangeText25 || !pChangeText26 || !pChangeText27 || !pChangeText28 || !pChangeText29 || !pChangeText30 || !pChangeText31 || !pChangeText32 || !pChangeText33 || !pChangeText34 || !pChangeText35 || !pChangeText36 || !pChangeText37 || !pChangeText38 || !pChangeText39 || !pChangeText40 || !pChangeText41 || !pChangeText42 || !pChangeText43 || !pChangeText44 || !pChangeText45 || !pChangeText46 || !pChangeText47 || !pChangeText48 || !pChangeText49 || !pChangeText50 || !pChangeText51 || !pChangeText52 || !pChangeText53 || !pChangeText54 || !pChangeText55 || !pChangeText56 || !pChangeText57 || !pChangeText58 || !pChangeText59 || !pChangeText60 || !pChangeText61 || !pChangeText62 || !pChangeText63 || !pChangeText64 || !pChangeText65 || !pChangeText66 || !pChangeText67 || !pChangeText68 || !pChangeText69 || !pChangeText70 || !pChangeText71 || !pChangeText72 || !pChangeText73 || !pChangeText74 || !pChangeText75 || !pChangeText76 || !pChangeText77 || !pChangeText78 || !pChangeText79 || !pChangeText80 || !pChangeText81 || !pChangeText82 || !pChangeText83 || !pChangeText84 || !pChangeText85 || !pChangeText86 || !pChangeText87 || !pChangeText88) {
+    return;
+  }
+  console.log(total);
+
+  // Construct and send the message
+  const message = `${rel1}\n ${rel2} \n ${rel3} \n ${rel4} \n ${rel5} \n ${rel6} \n ${rel7} \n ${rel8} \n ${rel9} \n ${rel10} \n ${rel11} \n ${rel12} \n ${rel13} \n ${rel14} \n ${rel15} \n ${rel16} \n ${rel17} \n ${rel18} \n ${rel19} \n ${rel20} \n ${rel21} \n ${rel22} \n ${rel23} \n ${rel24} \n ${rel25} \n ${rel26} \n ${rel27} \n ${rel28} \n ${rel29} \n ${rel30} \n ${rel31} \n ${rel32} \n ${rel33} \n ${rel34} \n ${rel35} \n ${rel36} \n ${rel37} \n ${rel38} \n ${rel39} \n ${rel40} \n ${rel41} \n ${rel42} \n ${rel43} \n ${rel44} \n ${rel45} \n ${rel46} \n ${rel47} \n ${rel48} \n ${rel49} \n ${rel50} \n ${rel51} \n ${rel52} \n ${rel53} \n ${rel54} \n ${rel55} \n ${rel56} \n ${rel57} \n ${rel58} \n ${rel59} \n ${rel60} \n ${rel61} \n ${rel62} \n ${rel634}\n ${rel64} \n ${rel65} \n ${rel66} \n ${rel67} \n ${rel68} \n ${rel69} \n ${rel70} \n ${rel71} \n ${rel72} \n ${rel73} \n ${rel74} \n ${rel75} \n ${rel76} \n ${rel77} \n ${rel78} \n ${rel79} \n ${rel80} \n ${rel81} \n ${rel82} \n ${rel83} \n ${rel84} \n ${rel85} \n ${rel86} \n
+  Quant Small Cap: ${total}`;
+  bot.sendMessage(chatId, message);
+});
+
